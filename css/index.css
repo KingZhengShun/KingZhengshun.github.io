@@ -1,0 +1,164 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+img {
+	border: 0;
+	display: block
+}
+
+a{
+	text-decoration: none;
+	color: #333;
+}
+
+ul{
+	list-style: none;
+}
+
+html,body{
+	width: 100%;
+	height: 100%;
+	font: 12px "宋体", Arial, Helvetica, sans-serif;
+	color: #756F71
+}
+
+
+
+/*header*/
+header{
+	width: 1000px;
+	height: 80px;
+	margin: auto;
+	position: relative;
+}
+
+#logo a{
+	width: 260px;
+    height: 60px;
+    margin: 10px 0 0 0;
+    position: absolute;
+    background: url(../img/logo.jpg) no-repeat;
+    display: block;
+}
+
+nav{
+	float: right;
+    width: 100%;
+    margin: 30px 0 0 0;
+    text-align: right;
+}
+
+nav a{
+	position: relative;
+	display: inline-block;
+	font-size: 18px;
+	font-family: "微软雅黑";	
+	margin: 0 5px;
+	padding: 0 8px;
+	text-align: center;
+	
+}
+
+nav a span:first-child{
+	display: block;
+	z-index: 2;
+}
+
+nav a span:last-child{
+	display: block;
+	z-index: 1;
+	color: #999999;
+	font-size: 12px;
+	transition: all 0.3s;
+	transform: translateY(-100%);
+	opacity: 0;	
+}
+
+nav a:hover span:last-child{
+	transform: translateY(0);
+	opacity: 1;
+}
+
+nav a:first-child span:first-child{
+	color: #E25782;
+}
+
+/*banner*/
+
+#banner{
+	width: 100%;
+	height: 265px;
+	background: url(../img/banner_top.jpg) top center;
+	overflow: hidden;
+}
+
+.box{
+	width: 1000px;
+	height: 100%;
+	margin: auto;
+	border: 1px solid #999999;
+}
+
+.texts{
+	width: 350px;
+	line-height: 26px;
+	margin: 60px 0 0 20px;
+	float: left;
+	font-size: 14px;
+}
+
+.avatar {
+	float: right;
+	margin: 40px;
+	width: 130px;
+	height: 130px;
+	border-radius: 100%;
+	overflow: hidden;
+	border: #FFF 4px solid
+}
+
+
+.avatar a {
+	display: block;
+	padding-top: 97px;
+	width: 160px;
+	background: url(../img/photos2.jpg) no-repeat;
+	background-size: 130px 130px
+}
+
+.avatar a span {
+	display: block;
+	margin-top: 63px;
+	padding-top: 8px;
+	width: 130px;
+	height: 55px;
+	text-align: center;
+	line-height: 20px;
+	color: #fff;
+	background: rgba(0, 0, 0, .5);
+	-webkit-transition: margin-top .2s ease-in-out;
+	-moz-transition: margin-top .2s ease-in-out;
+	-o-transition: margin-top .2s ease-in-out;
+	transition: margin-top .2s ease-in-out;
+}
+
+.avatar a:hover span {
+	display: block;
+	margin-top: -4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
