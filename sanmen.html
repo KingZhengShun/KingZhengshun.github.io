@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- SEO  -->
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<!-- 苹果专用 -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="blank" />
+	<meta name="format-detection" content="telephone=no" />
+	<!-- 简单移动端适配 -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<!-- 图标 -->
+	<link rel="shortcut icon" href="">
+
+	
+	<title>HTML模板</title>
+
+	<style type="text/css">
+		*{margin: 0;padding: 0;border: 0;}
+		table{border: 1px solid #000}
+		table td{border: 1px solid #000;padding: 0;margin: 0}
+		.layui-layer-content{position: relative;}
+		.dh_pic{width: 100%;height: auto;padding-top: 20px;transform: rotate(0);}
+		.dh_pic img{display: block;margin: auto;height: auto;}
+		.xuanzhuan{width: 100px;height: 40px;margin:0 20px;background: #f5f5f5;line-height: 40px;text-align: center;position: absolute;bottom: 3%;z-index: 1}
+		.xz1{left: 20%}
+		.xz2{left: 40%}
+		.xz3{left: 60%}
+	</style>
+</head>
+<body>
+<table id="table_sm" style="border: 1px solid #000">
+	<tr><th>车牌号</th><th>车辆全身照</th><th>标签安装位置</th><th>车辆来源承诺书</th></tr>
+</table>
+</body>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="layui/layui.all.js"></script>
+<script type="text/javascript">
+	var data=[
+			{"PLATE_NO":"天台000003","NON_MOTOR_PIC":"rfid/archivefile1-2018-08-11-065703-A8DAA5140514A8C0:1525420032/234549.jpg","NON_MOTOR_PIC":"rfid/archivefile1-2018-08-11-065703-A8DAA5140514A8C0:1525420032/234549.jpg","RFID_INSTA_PIC":"rfid/archivefile1-2018-08-11-065703-A8DAA5140514A8C0:1546924032/237331.jpg","COMMITMENT_PIC":"rfid/archivefile1-2018-08-11-065703-A8DAA5140514A8C0:1537794048/256619.jpg"},
+			{"PLATE_NO":"天台000072","NON_MOTOR_PIC":"rfid/archivefile1-2018-09-13-145748-BD4BF0610514A8C0:2995642368/262957.jpg","NON_MOTOR_PIC":"rfid/archivefile1-2018-09-13-145748-BD4BF0610514A8C0:2995642368/262957.jpg","RFID_INSTA_PIC":"rfid/archivefile1-2018-09-13-145905-EB0386880514A8C0:1056509952/240745.jpg","COMMITMENT_PIC":"rfid/archivefile1-2018-09-13-145905-EB0386880514A8C0:1046470656/238881.jpg"},
+			];
+	creatTable(data);
+	function creatTable(data){
+	 //这个函数的参数可以是从后台传过来的也可以是从其他任何地方传过来的
+	 //这里我假设这个data是一个长度为5的字符串数组 我要把他放在表格的一行里面，分成五列
+	 var tableData="<tr><td>车牌号</td><td>车辆来源承诺书</td></tr>"
+	 //动态增加5个td,并且把data数组的五个值赋给每个td
+	 for(var i=0;i<data.length;i++){
+	 	tableData+="</tr>"
+	 	var value=data[i];
+	  	tableData+="<td class='sm_td1'>"+value.PLATE_NO+"</td>"
+	  	tableData+="<td class='sm_td2'>"+value.COMMITMENT_PIC+"</td>"
+	  	tableData+="</tr>"
+	 }	 
+	 //现在tableData已经生成好了，把他赋值给上面的tbody
+	 $("#table_sm").html(tableData);
+	}
+
+	//弹出一个页面层
+  $('.sm_td2').on('click', function(e){
+    layer.open({
+      type: 1,
+      area: ['700', '700px'],
+      shadeClose: true, //点击遮罩关闭
+      content: '<div class="dh_pic"><img src="http://111.1.25.110:8810/itc/home_home.action/itc/dw/dwPicOutPut_getPicOutPut.action?picPath='+$(this).html()+'&picStorage=tzga&rfidType=1"></div><div class="xuanzhuan xz1">旋转90度</div><div class="xuanzhuan xz2">旋转180度</div><div class="xuanzhuan xz3">旋转270度</div>'
+    });
+
+    $('.xz1').click(function(){
+  		$('.dh_pic').css("transform",'rotate(90deg)');      
+  	});
+
+  	$('.xz2').click(function(){
+  		$('.dh_pic').css("transform",'rotate(180deg)');      
+  	});
+
+  	$('.xz3').click(function(){
+  		$('.dh_pic').css("transform",'rotate(270deg)');      
+  	});
+
+  });
+  
+</script>
+</html>
