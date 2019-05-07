@@ -22,10 +22,10 @@
 		*{margin: 0;padding: 0;border: 0;}
 		table{border: 1px solid #000}
 		table td{border: 1px solid #000;padding: 0;margin: 0}
-		.layui-layer-content{position: relative;}
+		.layui-layer-page{position: relative}
 		.dh_pic{width: 100%;height: auto;padding-top: 20px;transform: rotate(0);}
 		.dh_pic img{display: block;margin: auto;height: auto;}
-		.xuanzhuan{width: 100px;height: 40px;margin:0 20px;background: #f5f5f5;line-height: 40px;text-align: center;position: absolute;bottom: 3%;z-index: 1}
+		.xuanzhuan{width: 100px;height: 40px;margin:10px;background: #f5f5f5;line-height: 40px;text-align: center;position: absolute;bottom: 3%;z-index: 1}
 		.xz1{left: 20%}
 		.xz2{left: 40%}
 		.xz3{left: 60%}
@@ -64,21 +64,37 @@
   $('.sm_td2').on('click', function(e){
     layer.open({
       type: 1,
-      area: ['700', '700px'],
+      area: ['1000px', '800px'],
       shadeClose: true, //点击遮罩关闭
-      content: '<div class="dh_pic"><img src="http://111.1.25.110:8810/itc/home_home.action/itc/dw/dwPicOutPut_getPicOutPut.action?picPath='+$(this).html()+'&picStorage=tzga&rfidType=1"></div><div class="xuanzhuan xz1">旋转90度</div><div class="xuanzhuan xz2">旋转180度</div><div class="xuanzhuan xz3">旋转270度</div>'
+      content: '<div class="dh_pic"><img class="dh_pic_img" src="http://111.1.25.110:8810/itc/home_home.action/itc/dw/dwPicOutPut_getPicOutPut.action?picPath='+$(this).html()+'&picStorage=tzga&rfidType=1"></div><div class="xuanzhuan xz1">旋转90度</div><div class="xuanzhuan xz2">放大</div><div class="xuanzhuan xz3">缩小</div>'
     });
-
+	var val=0
     $('.xz1').click(function(){
-  		$('.dh_pic').css("transform",'rotate(90deg)');      
+    	val=val+90;
+    	console.log(val);
+  		$('.dh_pic').css("transform","rotate("+val+"deg)");
   	});
 
   	$('.xz2').click(function(){
-  		$('.dh_pic').css("transform",'rotate(180deg)');      
+  		$('.dh_pic_img').css({
+			width: function(index, value) {
+				return parseFloat(value) * 1.2;
+			},
+			height: function(index, value) {
+				return parseFloat(value) * 1.3;
+			}
+		});
   	});
 
   	$('.xz3').click(function(){
-  		$('.dh_pic').css("transform",'rotate(270deg)');      
+  		$('.dh_pic_img').css({
+			width: function(index, value) {
+				return parseFloat(value) * 0.8;
+			},
+			height: function(index, value) {
+				return parseFloat(value) * 0.7;
+			}
+		});
   	});
 
   });
