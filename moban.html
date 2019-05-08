@@ -49,7 +49,7 @@
 		function creatTable(data){
 			//这个函数的参数可以是从后台传过来的也可以是从其他任何地方传过来的
 			//这里我假设这个data是一个长度为5的字符串数组 我要把他放在表格的一行里面，分成五列
-			var tableData="<colgroup><col width='150'></colgroup><thead><tr><th>昵称</th><th>加入时间</th></tr></thead><tbody>";
+			var tableData="<colgroup><col width='150'></colgroup><thead><tr><th>车牌号</th><th>图片信息</th></tr></thead><tbody>";
 			//动态增加5个td,并且把data数组的五个值赋给每个td
 			for(var i=0;i<data.length;i++){
 				tableData+="<tr>"
