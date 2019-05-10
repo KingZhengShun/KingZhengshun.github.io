@@ -53,6 +53,7 @@
 		});
 		creatTable(data_xs);
 		function creatTable(data){
+			console.log(data);
 			//这个函数的参数可以是从后台传过来的也可以是从其他任何地方传过来的
 			//这里我假设这个data是一个长度为5的字符串数组 我要把他放在表格的一行里面，分成五列
 			var tableData="<colgroup><col width='150'></colgroup><thead><tr><th>车牌号</th><th style='text-align: center'>图片信息</th></tr></thead><tbody>";
@@ -60,9 +61,9 @@
 			for(var i=0;i<data.length;i++){
 				tableData+="<tr>"
 				var value=data[i];
-				tableData+="<td class='sm_td1'>"+value.PLATE_NO+"</td>"
-				tableData+="<td class='sm_td2' pic_name='"+value.COMMITMENT_PIC+"' style='color:red;text-align: center;cursor: pointer;'>车辆来源承诺书</td>"
-				tableData+="</tr>"
+				tableData+="<td class='sm_td1'>"+value.PLATE_NO+"</td>";
+				tableData+="<td class='sm_td2' pic_name='"+value.COMMITMENT_PIC+"' style='color:red;text-align: center;cursor: pointer;'>车辆来源承诺书</td>";
+				tableData+="</tr>";
 			}
 			tableData+="</tbody>";
 			//现在tableData已经生成好了，把他赋值给上面的tbody
