@@ -16,19 +16,78 @@
 	<link rel="shortcut icon" href="">
 
 	
-	<title>HTML模板</title>
-
+	<title>台州各县市区</title>
+	<link rel="stylesheet" href="layui/css/layui.css">
 	<style type="text/css">
 	table{border: 1px solid #000}
 	table td{border: 1px solid #000;padding: 0;margin: 0}
+	table td a{
+		display: block;width: 100%;color: red;text-align: center}
 	</style>
 </head>
+
 <body>
-<ul>]
-<li><a href="sanmen.html">三门</a></li>
-<li><a href="">三门</a></li>
-<li><a href="">三门</a></li>
-<li><a href="">三门</a></li>
-</ul>
+
+<h2 style="margin: 20px auto;text-align: center;">台州市各县市区表</h2>
+<hr>
+<table class="layui-table"  lay-size='sm' style='max-width: 1200px;margin: auto;'>
+	<colgroup>
+		<col width="150">
+		<col>
+	</colgroup>
+	<thead>
+	<tr>
+		<th>各县市区</th>
+		<th>数据接口</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>椒江</td>
+		<td><a href="moban.html?data=jiaojang">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>温岭</td>
+		<td><a href="moban.html?data=wenling">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>玉环</td>
+		<td><a href="moban.html?data=yuhuan">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>路桥</td>
+		<td><a href="moban.html?data=luqiao">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>临海</td>
+		<td><a href="moban.html?data=linhai">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>黄岩</td>
+		<td><a href="moban.html?data=huangyan">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>三门</td>
+		<td><a href="moban.html?data=sanmen">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>天台</td>
+		<td><a href="moban.html?data=tiantai">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>仙居</td>
+		<td><a href="moban.html?data=xianju">请点击进入</a></td>
+	</tr>
+	<tr>
+		<td>集聚</td>
+		<td><a href="moban.html?data=jiju">请点击进入</a></td>
+	</tr>
+
+	</tbody>
+</table>
+
 </body>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="layui/layui.js"></script>
+
 </html>
