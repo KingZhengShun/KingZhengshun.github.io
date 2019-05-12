@@ -14,7 +14,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 		<!-- 图标 -->
 		<link rel="shortcut icon" href="">
-
+		<link rel="stylesheet" href="css/photoviewer.css">
 		<link rel="stylesheet" href="layui/css/layui.css">
 
 		<style type="text/css">
@@ -39,7 +39,25 @@
 	</body>
 	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 	<script src="layui/layui.js"></script>
+	<script src="js/photoviewer.js"></script>
 	<script>
+		var phone_jc;
+        $(function () {
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+            var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+            var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+            var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+            if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+                phone_jc=true;
+            } else {
+                phone_jc=false;
+            }
+        });
 		var url_data=GetRequest();
 		var data_xs;
 		$.ajax({
@@ -49,13 +67,11 @@
 			dataType:'json',
 			success:function (data) {
 				data_xs=data;
-				console.log(data);
 			}
 		});
-		console.log(data_xs);
+
 		creatTable(data_xs);
 		function creatTable(data){
-			console.log(data);
 			//这个函数的参数可以是从后台传过来的也可以是从其他任何地方传过来的
 			//这里我假设这个data是一个长度为5的字符串数组 我要把他放在表格的一行里面，分成五列
 			var tableData="<colgroup><col width='150'></colgroup><thead><tr><th>车牌号</th><th style='text-align: center'>图片信息</th></tr></thead><tbody>";
@@ -75,52 +91,66 @@
 		//弹出一个页面层
 		$('.sm_td2').on('click', function(e){
 			var pic_name=($(this).attr('pic_name'));
+			if(!phone_jc){
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    var val=0;
 
-			layui.use('layer', function(){
-				var layer = layui.layer;
-				var val=0;
-				console.log(e.target.innerText);
-				layer.open({
-					type: 1,
-					area: ['1000px', '800px'],
-					shadeClose: true, //点击遮罩关闭
-					content: '<div class="dh_pic"><img class="dh_pic_img" src="http://111.1.25.110:8810/itc/home_home.action/itc/dw/dwPicOutPut_getPicOutPut.action?picPath='+pic_name+'&picStorage=tzga&rfidType=1"></div>',
-					btn:['旋转','放大','缩小'],
-					btnAlign:'c',
-					yes: function(index, layero){
-						//按钮【按钮一】的回调
-						val+=90;
-						$('.dh_pic').css("transform","rotate("+val+"deg)");
-					}
-					,btn2: function(index, layero){
-						//按钮【按钮二】的回调
-						$('.dh_pic_img').css({
-							width: function(index, value) {
-								return parseFloat(value) * 1.2;
-							},
-							height: function(index, value) {
-								return parseFloat(value) * 1.3;
-							}
-						});
-						//开启该代码可禁止点击该按钮关闭
-						return false;
-					}
-					,btn3: function(index, layero){
-						//按钮【按钮三】的回调
-						$('.dh_pic_img').css({
-							width: function(index, value) {
-								return parseFloat(value) * 0.8;
-							},
-							height: function(index, value) {
-								return parseFloat(value) * 0.7;
-							}
-						});
-						//开启该代码可禁止点击该按钮关闭
-						return false;
-					}
-				});
-			});
+                    layer.open({
+                        type: 1,
+                        area: ['1000px', '800px'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: '<div class="dh_pic"><img class="dh_pic_img" src="http://111.1.25.110:8810/itc/home_home.action/itc/dw/dwPicOutPut_getPicOutPut.action?picPath='+pic_name+'&picStorage=tzga&rfidType=1"></div>',
+                        btn:['旋转','放大','缩小'],
+                        btnAlign:'c',
+                        yes: function(index, layero){
+                            //按钮【按钮一】的回调
+                            val+=90;
+                            $('.dh_pic').css("transform","rotate("+val+"deg)");
+                        }
+                        ,btn2: function(index, layero){
+                            //按钮【按钮二】的回调
+                            $('.dh_pic_img').css({
+                                width: function(index, value) {
+                                    return parseFloat(value) * 1.2;
+                                },
+                                height: function(index, value) {
+                                    return parseFloat(value) * 1.3;
+                                }
+                            });
+                            //开启该代码可禁止点击该按钮关闭
+                            return false;
+                        }
+                        ,btn3: function(index, layero){
+                            //按钮【按钮三】的回调
+                            $('.dh_pic_img').css({
+                                width: function(index, value) {
+                                    return parseFloat(value) * 0.8;
+                                },
+                                height: function(index, value) {
+                                    return parseFloat(value) * 0.7;
+                                }
+                            });
+                            //开启该代码可禁止点击该按钮关闭
+                            return false;
+                        }
+                    });
+                });
+
+			}else{
+                var item=[
+                    {
+                        src: "http://111.1.25.110:8810/itc/home_home.action/itc/dw/dwPicOutPut_getPicOutPut.action?picPath="+pic_name+"&picStorage=tzga&rfidType=1",
+                        title:"车辆来源承诺书"
+                    }
+                ];
+                var option={
+                    index:0
+                }
+                var view=new PhotoViewer(item,option);
+			}
 		});
+
 
 		function GetRequest() {
 			var url = location.search; //获取url中"?"符后的字串
