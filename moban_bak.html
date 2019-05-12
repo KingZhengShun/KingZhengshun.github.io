@@ -91,7 +91,53 @@
 		//弹出一个页面层
 		$('.sm_td2').on('click', function(e){
 			var pic_name=($(this).attr('pic_name'));
+			if(!phone_jc){
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    var val=0;
 
+                    layer.open({
+                        type: 1,
+                        area: ['1000px', '800px'],
+                        shadeClose: true, //点击遮罩关闭
+                        content: '<div class="dh_pic"><img class="dh_pic_img" src="http://111.1.25.110:8810/itc/home_home.action/itc/dw/dwPicOutPut_getPicOutPut.action?picPath='+pic_name+'&picStorage=tzga&rfidType=1"></div>',
+                        btn:['旋转','放大','缩小'],
+                        btnAlign:'c',
+                        yes: function(index, layero){
+                            //按钮【按钮一】的回调
+                            val+=90;
+                            $('.dh_pic').css("transform","rotate("+val+"deg)");
+                        }
+                        ,btn2: function(index, layero){
+                            //按钮【按钮二】的回调
+                            $('.dh_pic_img').css({
+                                width: function(index, value) {
+                                    return parseFloat(value) * 1.2;
+                                },
+                                height: function(index, value) {
+                                    return parseFloat(value) * 1.3;
+                                }
+                            });
+                            //开启该代码可禁止点击该按钮关闭
+                            return false;
+                        }
+                        ,btn3: function(index, layero){
+                            //按钮【按钮三】的回调
+                            $('.dh_pic_img').css({
+                                width: function(index, value) {
+                                    return parseFloat(value) * 0.8;
+                                },
+                                height: function(index, value) {
+                                    return parseFloat(value) * 0.7;
+                                }
+                            });
+                            //开启该代码可禁止点击该按钮关闭
+                            return false;
+                        }
+                    });
+                });
+
+			}else{
                 var item=[
                     {
                         src: "http://111.1.25.110:8810/itc/home_home.action/itc/dw/dwPicOutPut_getPicOutPut.action?picPath="+pic_name+"&picStorage=tzga&rfidType=1",
@@ -102,6 +148,7 @@
                     index:0
                 }
                 var view=new PhotoViewer(item,option);
+			}
 		});
 
 
